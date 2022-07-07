@@ -27,8 +27,6 @@ export const getAll = async (req: Request, res: Response) => {
 export const getById = async (req: Request, res: Response) => {
   const projectId = req.params.projectId;
 
-  console.log(req.params);
-
   try {
     const project = await Project.findById(projectId);
     if (project) {
