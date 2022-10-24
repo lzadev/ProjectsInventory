@@ -1,11 +1,16 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
+import { ApiInventoryDataSource } from "../database/data-source";
+import { ApiAppMardom } from "../models/ApiMardom";
 
 import Project from "../models/Project";
 
+const apiAppMardomRepository =
+  ApiInventoryDataSource.getRepository(ApiAppMardom);
+
 export const getAll = async (req: Request, res: Response) => {
   try {
-    const projects = await Project.find();
+    const projects = await apiAppMardomRepository.find();
     res.status(200).json({
       total: projects.length,
       data: projects,
